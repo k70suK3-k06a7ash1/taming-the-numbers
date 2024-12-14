@@ -7,7 +7,7 @@ cd .git/hooks
 touch pre-push
 
 # Add the npm command to the pre-push file
-echo -e "#!/bin/sh\n\nmake run deploy" > pre-push
+echo -e "#!/bin/sh\n\nmake deploy" > pre-push
 
 # Make the pre-push file executable
 chmod +x pre-push
