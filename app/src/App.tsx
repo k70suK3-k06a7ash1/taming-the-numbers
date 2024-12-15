@@ -28,7 +28,7 @@ function App() {
       <main className="flex-1 flex flex-col overflow-scroll">
         <header className=" py-4 px-4 bg-primary text-primary-foreground">
           <section className="container flex justify-between items-center mx-auto px-4 sm:px-8">
-            <h1 className="text-2xl font-bold"></h1>
+            <h1 className="text-2xl font-bold font-serif">Taming The Number</h1>
             <div className="flex items-center space-x-2">
               <Button
                 variant="ghost"
