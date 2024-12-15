@@ -16,10 +16,10 @@ import { Button } from "@/components/ui/button";
 function App() {
   return (
     <>
-      <AppSidebar />
-      <SidebarTrigger size={"lg"} />
+      {" "}
       <div>
         <h1>My simple Dexie app</h1>
+
         <h2>Add Friend</h2>
         <AddFriendForm defaultAge={21} />
         <h2>Friend List</h2>
@@ -47,7 +47,8 @@ function App() {
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
-      </div>
+      </div>{" "}
+      <SidebarTrigger className="" size={"lg"} />
     </>
   );
 }
