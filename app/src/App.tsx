@@ -81,7 +81,6 @@ function App() {
           <DrawerContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <DrawerHeader>
-                <DrawerTitle>Are you absolutely sure?</DrawerTitle>
                 <DrawerDescription>
                   <div>
                     <Label htmlFor="description">Description</Label>
@@ -103,15 +102,30 @@ function App() {
                       required
                     />
                   </div>
+
+                  <div>
+                    <Label htmlFor="category">Category</Label>
+                    <Input
+                      id="category"
+                      type="number"
+                      step="0.01"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      required
+                    />
+                  </div>
                 </DrawerDescription>
               </DrawerHeader>
-              <DrawerFooter>
-                <Button type="submit" className="w-full">
-                  Add Transaction
-                </Button>
-                <DrawerClose>
-                  <Button>Cancel</Button>
-                </DrawerClose>
+              <DrawerFooter className="pt-0">
+                <section className="flex gap-2">
+                  {" "}
+                  <DrawerClose asChild>
+                    <Button className="w-1/5">Cancel</Button>
+                  </DrawerClose>
+                  <Button type="submit" className=" w-3/4">
+                    Add Transaction
+                  </Button>
+                </section>
               </DrawerFooter>
             </form>
           </DrawerContent>

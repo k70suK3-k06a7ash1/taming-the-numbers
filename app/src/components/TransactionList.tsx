@@ -51,7 +51,10 @@ export default function TransactionList() {
               <div>
                 <p className="font-semibold">{transaction.description}</p>
                 <p className="text-sm text-muted-foreground">
-                  {transaction.date} • {transaction.category}
+                  {transaction.category}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {transaction.date}
                 </p>
               </div>
             </div>
