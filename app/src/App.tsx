@@ -26,7 +26,10 @@ function App() {
         <FriendList minAge={18} maxAge={65} />
 
         <Drawer>
-          <DrawerTrigger asChild>
+          <DrawerTrigger
+            asChild
+            className="fixed bottom-3 right-3 rounded-full w-14 h-14"
+          >
             <Button>Open</Button>
           </DrawerTrigger>
           <DrawerContent>
