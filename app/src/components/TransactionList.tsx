@@ -56,12 +56,12 @@ export default function TransactionList() {
               </div>
             </div>
             <p
-              className={`font-bold ${
+              className={`font-bold whitespace-nowrap ${
                 transaction.amount >= 0 ? "text-green-600" : "text-red-600"
               }`}
             >
               {transaction.amount >= 0 ? "+" : ""}
-              {transaction.amount.toFixed(2)}
+              {transaction.amount.toFixed(2)}円
             </p>
           </CardContent>
         </Card>
