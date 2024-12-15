@@ -57,11 +57,14 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <nav className="space-y-2 p-4">
-          <Button variant="ghost" className="w-full justify-start">
+          {/* <Button variant="ghost" className="w-full justify-start">
             Dashboard
-          </Button>
+          </Button> */}
           <Button variant="ghost" className="w-full justify-start">
             Transactions
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            Categories
           </Button>
           <Button variant="ghost" className="w-full justify-start">
             Reports
