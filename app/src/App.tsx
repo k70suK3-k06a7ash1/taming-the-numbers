@@ -19,17 +19,9 @@ import { Menu, Moon, Plus, Sun } from "lucide-react";
 import { useTheme } from "@/providers/Theme";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
+import { TransactionForm } from "@/components/TransactionForm";
 function App() {
   const { theme, setTheme } = useTheme();
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("New transaction:", {
-      description,
-      amount: parseFloat(amount),
-    });
-  };
 
   return (
     <div className="flex w-screen h-screen bg-background text-foreground">
@@ -68,67 +60,7 @@ function App() {
             <TransactionList />
           </div>
         </ScrollArea>
-        <Drawer>
-          <DrawerTrigger
-            asChild
-            className="fixed bottom-3 right-3 rounded-full w-14 h-14"
-          >
-            <Button>
-              <Plus className="w-6 h-6" />
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <DrawerHeader>
-                <DrawerDescription>
-                  <div>
-                    <Label htmlFor="description">Description</Label>
-                    <Input
-                      id="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="amount">Amount</Label>
-                    <Input
-                      id="amount"
-                      type="number"
-                      step="0.01"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="category">Category</Label>
-                    <Input
-                      id="category"
-                      type="number"
-                      step="0.01"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      required
-                    />
-                  </div>
-                </DrawerDescription>
-              </DrawerHeader>
-              <DrawerFooter className="pt-0">
-                <section className="flex gap-2">
-                  {" "}
-                  <DrawerClose asChild>
-                    <Button className="w-1/5">Cancel</Button>
-                  </DrawerClose>
-                  <Button type="submit" className=" w-3/4">
-                    Add Transaction
-                  </Button>
-                </section>
-              </DrawerFooter>
-            </form>
-          </DrawerContent>
-        </Drawer>
+        <TransactionForm />
       </main>
       <AppSidebar />
     </div>
