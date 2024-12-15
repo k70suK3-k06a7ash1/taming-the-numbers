@@ -148,11 +148,11 @@ export const TransactionForm = () => {
           </DrawerHeader>
           <DrawerFooter className="pt-0">
             <section className="flex gap-2">
-              <DrawerClose asChild>
-                <Button className="w-1/5">Cancel</Button>
-              </DrawerClose>
-              <Button type="submit" className=" w-3/4">
-                Add Transaction
+              <Button className="w-1/4" variant={"destructive"}>
+                キャンセル
+              </Button>
+              <Button type="submit" className="w-4/5" variant={"secondary"}>
+                追加する
               </Button>
             </section>
           </DrawerFooter>
