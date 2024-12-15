@@ -39,6 +39,34 @@ export const TransactionForm = () => {
       SelectMode.INPUT
   );
 
+  //   const SelectConfig = {
+  //     min: 100, // 最小金額
+  //     max: 40000, // 最大金額
+  //     step: 300, // 金額刻み
+  //   };
+
+  const generateFibonacci = (max: number): number[] => {
+    let fib = [100, 200]; // 初期値として 1 と 2
+    while (true) {
+      const next = fib[fib.length - 1] + fib[fib.length - 2];
+      if (next > max) break;
+      fib.push(next);
+    }
+    return fib;
+  };
+
+  //   const generateOptions = () => {
+  //     const options = [];
+  //     for (
+  //       let i = SelectConfig.min;
+  //       i <= SelectConfig.max;
+  //       i += SelectConfig.step
+  //     ) {
+  //       options.push(i);
+  //     }
+  //     return options;
+  //   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically save the new transaction
@@ -113,8 +141,13 @@ export const TransactionForm = () => {
                         <SelectValue placeholder="金額を入力" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="100">100</SelectItem>
-                        <SelectItem value="200">200</SelectItem>
+                        {generateFibonacci(40000).map((amount) => (
+                          <SelectItem key={amount} value={String(amount)}>
+                            {amount.toLocaleString()}円
+                          </SelectItem>
+                        ))}
+                        {/* <SelectItem value="100">100</SelectItem>
+                        <SelectItem value="200">200</SelectItem> */}
                       </SelectContent>
                     </Select>
                   )}
