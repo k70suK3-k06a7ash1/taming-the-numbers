@@ -6,7 +6,7 @@ import {
   DrawerHeader,
   DrawerDescription,
   DrawerFooter,
-  DrawerClose,
+  //   DrawerClose,
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
@@ -90,8 +90,11 @@ export const TransactionForm = () => {
                   >
                     金額
                     <div className="py-1 flex justify-end items-center gap-2">
-                      <span className="text-xs">プルダウンで入力</span>
+                      <Label className="text-xs" htmlFor="amount-mode">
+                        プルダウンで入力
+                      </Label>
                       <Switch
+                        id="amount-mode"
                         checked={amountMode === SelectMode.SELECT}
                         onCheckedChange={handleCheckedAmountMode}
                       />
