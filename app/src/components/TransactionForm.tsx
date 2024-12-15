@@ -19,11 +19,23 @@ import {
 } from "@/components/ui/select";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
+
+const SelectMode = {
+  INPUT: "input",
+  SELECT: "select",
+} as const;
+
+type SelectModeType = (typeof SelectMode)[keyof typeof SelectMode];
 
 export const TransactionForm = () => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+
+  const [amountMode, setAmountMode] = useState<SelectModeType>(
+    SelectMode.INPUT
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,22 +61,11 @@ export const TransactionForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <DrawerHeader>
             <DrawerDescription>
-              {/* <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex justify-center items-center z-50 animate-fade-in">
-                <div className="bg-card p-6 rounded-lg shadow-lg w-full max-w-md animate-slide-in">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold">新規取引</h2>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={onClose}
-                      aria-label="Close"
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div> */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="description">説明</Label>
+                  <Label className="flex justify-start" htmlFor="description">
+                    説明
+                  </Label>
                   <Input
                     id="description"
                     value={description}
@@ -74,19 +75,51 @@ export const TransactionForm = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="amount">金額</Label>
-                  <Input
-                    id="amount"
-                    type="number"
-                    step="0.01"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    required
-                    className="mt-1"
-                  />
+                  <Label
+                    className="flex justify-between items-center"
+                    htmlFor="amount"
+                  >
+                    金額
+                    <div className="py-1 flex justify-end items-center gap-1">
+                      <span className="text-xs">プルダウンで入力</span>
+                      <Switch
+                        onCheckedChange={() => {
+                          setAmountMode(
+                            amountMode === SelectMode.INPUT
+                              ? SelectMode.SELECT
+                              : SelectMode.INPUT
+                          );
+                        }}
+                      />
+                    </div>
+                  </Label>
+                  {amountMode === SelectMode.INPUT && (
+                    <Input
+                      id="amount"
+                      type="number"
+                      step="0.01"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      required
+                      className="mt-1"
+                    />
+                  )}
+                  {amountMode === SelectMode.SELECT && (
+                    <Select onValueChange={setAmount} required>
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="金額を入力" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="100">100</SelectItem>
+                        <SelectItem value="200">200</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
                 <div>
-                  <Label htmlFor="category">カテゴリー</Label>
+                  <Label className="flex justify-start" htmlFor="category">
+                    カテゴリー
+                  </Label>
                   <Select onValueChange={setCategory} required>
                     <SelectTrigger className="mt-1">
                       <SelectValue placeholder="カテゴリーを選択" />
@@ -101,17 +134,11 @@ export const TransactionForm = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                {/* <Button type="submit" className="w-full">
-                  取引を追加
-                </Button> */}
               </form>
-              {/* </div>
-              </div> */}
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter className="pt-0">
             <section className="flex gap-2">
-              {" "}
               <DrawerClose asChild>
                 <Button className="w-1/5">Cancel</Button>
               </DrawerClose>
