@@ -14,7 +14,7 @@ function generateDummyTransactions(count: number) {
   const transactions = [];
 
   for (let i = 1; i <= count; i++) {
-    const amount = Math.random() * 1000 - 500; // -500 to 500
+    const amount = Math.random() * 10000 - 500; // -500 to 500
     transactions.push({
       id: i,
       date: new Date(2023, 0, i).toISOString().split("T")[0], // 2023-01-01 to 2023-12-31

@@ -17,7 +17,7 @@ export function TotalBalance({ income, expenses }: TotalBalanceProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-green-500">
-            ¥{income.toLocaleString()}
+            ¥{Math.round(income).toLocaleString()}円
           </div>
           <div className="text-xs text-muted-foreground">前月比 +2.5%</div>
         </CardContent>
@@ -35,7 +35,7 @@ export function TotalBalance({ income, expenses }: TotalBalanceProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-red-500">
-            ¥{expenses.toLocaleString()}
+            ¥{Math.round(expenses).toLocaleString()}円
           </div>
           <div className="text-xs text-muted-foreground">前月比 -1.5%</div>
         </CardContent>
@@ -57,7 +57,7 @@ export function TotalBalance({ income, expenses }: TotalBalanceProps) {
               balance >= 0 ? "text-blue-500" : "text-red-500"
             }`}
           >
-            ¥{balance.toLocaleString()}
+            ¥{Math.round(balance).toLocaleString()}円
           </div>
           <div className="text-xs text-muted-foreground">前月比 +4.5%</div>
         </CardContent>
