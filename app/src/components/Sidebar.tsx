@@ -6,27 +6,35 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Dashboard",
     url: "/",
-    icon: Home,
+  },
+
+  {
+    title: "Transactions",
+    url: "/",
   },
   {
-    title: "Category",
+    title: "Reports",
     url: "/",
-    icon: Calendar,
   },
   {
-    title: "Amount Select Option",
+    title: "Amount Options",
     url: "/",
-    icon: Search,
+  },
+  {
+    title: "Categories",
+    url: "/",
   },
   {
     title: "Settings",
@@ -36,31 +44,30 @@ const items = [
   {
     title: "Web LLM",
     url: "/",
-    icon: Settings,
   },
 ];
 
 export function AppSidebar() {
   return (
     <Sidebar side="right">
+      <SidebarHeader>
+        <h2 className="text-xl font-semibold p-4">Menu</h2>
+      </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <nav className="space-y-2 p-4">
+          <Button variant="ghost" className="w-full justify-start">
+            Dashboard
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            Transactions
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            Reports
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            Settings
+          </Button>
+        </nav>
       </SidebarContent>
     </Sidebar>
   );
