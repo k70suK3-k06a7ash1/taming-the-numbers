@@ -1,51 +1,51 @@
-import { Calendar, Home, Search, Settings } from "lucide-react";
+// import { Calendar, Home, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
+  //   SidebarGroup,
+  //   SidebarGroupContent,
+  //   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  //   SidebarMenu,
+  //   SidebarMenuButton,
+  //   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 
 // Menu items.
-const items = [
-  {
-    title: "Dashboard",
-    url: "/",
-  },
+// const items = [
+//   {
+//     title: "Dashboard",
+//     url: "/",
+//   },
 
-  {
-    title: "Transactions",
-    url: "/",
-  },
-  {
-    title: "Reports",
-    url: "/",
-  },
-  {
-    title: "Amount Options",
-    url: "/",
-  },
-  {
-    title: "Categories",
-    url: "/",
-  },
-  {
-    title: "Settings",
-    url: "/",
-    icon: Settings,
-  },
-  {
-    title: "Web LLM",
-    url: "/",
-  },
-];
+//   {
+//     title: "Transactions",
+//     url: "/",
+//   },
+//   {
+//     title: "Reports",
+//     url: "/",
+//   },
+//   {
+//     title: "Amount Options",
+//     url: "/",
+//   },
+//   {
+//     title: "Categories",
+//     url: "/",
+//   },
+//   {
+//     title: "Settings",
+//     url: "/",
+//     icon: Settings,
+//   },
+//   {
+//     title: "Web LLM",
+//     url: "/",
+//   },
+// ];
 
 export function AppSidebar() {
   return (
