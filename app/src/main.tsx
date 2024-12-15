@@ -4,10 +4,11 @@ import "./index.css";
 import App from "./App.tsx";
 import { SidebarProvider } from "@/components/ui/sidebar.tsx";
 import { ThemeProvider } from "@/providers/Theme.tsx";
+import { STORAGE_KEY } from "@/constants/storage-key.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="dark" storageKey={STORAGE_KEY.THEME}>
       <SidebarProvider defaultOpen={false}>
         <App />
       </SidebarProvider>
