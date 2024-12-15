@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/providers/Theme.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <SidebarProvider>
+      <SidebarProvider defaultOpen={false}>
         <App />
       </SidebarProvider>
     </ThemeProvider>

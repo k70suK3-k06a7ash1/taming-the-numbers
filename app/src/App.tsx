@@ -35,30 +35,37 @@ function App() {
   return (
     <div className="flex w-screen h-screen bg-background text-foreground">
       <main className="flex-1 overflow-hidden">
-        <div className="container mx-auto h-full flex flex-col">
-          <header className="flex justify-between items-center py-4 px-4 bg-primary text-primary-foreground">
-            <h1 className="text-2xl font-bold">MyFinance</h1>
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </Button>
-              <SidebarTrigger>
-                <Button variant="ghost" size="icon" aria-label="Open menu">
-                  <Menu className="h-5 w-5" />
+        <div className="mx-auto h-full flex flex-col">
+          <header className="py-4 px-4 bg-primary text-primary-foreground">
+            <section className="container flex justify-between items-center mx-auto px-4">
+              <h1 className="text-2xl font-bold">MyFinance</h1>
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? (
+                    <Sun className="h-5 w-5" />
+                  ) : (
+                    <Moon className="h-5 w-5" />
+                  )}
                 </Button>
-              </SidebarTrigger>
-            </div>
+                <SidebarTrigger>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="icon"
+                    aria-label="Open menu"
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SidebarTrigger>
+              </div>
+            </section>
           </header>
-          <div>
+          <div className="container mx-auto">
             <ScrollArea className="flex-1 px-4">
               <TransactionList />
             </ScrollArea>
