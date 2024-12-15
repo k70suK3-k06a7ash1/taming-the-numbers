@@ -1,21 +1,21 @@
 // import { AddFriendForm } from "./components/AddFriendForm";
 // import { FriendList } from "./components/FriendList";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+// import {
+//   Drawer,
+//   DrawerClose,
+//   DrawerContent,
+//   DrawerDescription,
+//   DrawerFooter,
+//   DrawerHeader,
+//   DrawerTrigger,
+// } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Label } from "@radix-ui/react-label";
+// import { Input } from "@/components/ui/input";
+// import { useState } from "react";
+// import { Label } from "@radix-ui/react-label";
 import TransactionList from "@/components/TransactionList";
-import { Menu, Moon, Plus, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/providers/Theme";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
