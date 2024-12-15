@@ -7,51 +7,53 @@ import {
   //   SidebarGroupContent,
   //   SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   //   SidebarMenu,
   //   SidebarMenuButton,
   //   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import {
+  AudioWaveform,
+  ChevronDown,
+  Command,
+  GalleryVerticalEnd,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { TeamSwitcher } from "@/components/TeamSwitcher";
 
-// Menu items.
-// const items = [
-//   {
-//     title: "Dashboard",
-//     url: "/",
-//   },
-
-//   {
-//     title: "Transactions",
-//     url: "/",
-//   },
-//   {
-//     title: "Reports",
-//     url: "/",
-//   },
-//   {
-//     title: "Amount Options",
-//     url: "/",
-//   },
-//   {
-//     title: "Categories",
-//     url: "/",
-//   },
-//   {
-//     title: "Settings",
-//     url: "/",
-//     icon: Settings,
-//   },
-//   {
-//     title: "Web LLM",
-//     url: "/",
-//   },
-// ];
+const data = {
+  teams: [
+    {
+      name: "Daily Expense Management Budget",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Savings & Asset Building Budget",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Budgeting & Planning Budget",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
+};
 
 export function AppSidebar() {
   return (
     <Sidebar side="right">
       <SidebarHeader>
-        <h2 className="text-xl font-semibold p-4">Menu</h2>
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
         <nav className="space-y-2 p-4">
