@@ -20,6 +20,7 @@ import {
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
+import { STORAGE_KEY } from "@/constants/storage-key";
 
 const SelectMode = {
   INPUT: "input",
@@ -28,9 +29,6 @@ const SelectMode = {
 
 type SelectModeType = (typeof SelectMode)[keyof typeof SelectMode];
 
-const STORAGE_KEY = {
-  AMOUNT_MODE: "amount-mode",
-} as const;
 export const TransactionForm = () => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
