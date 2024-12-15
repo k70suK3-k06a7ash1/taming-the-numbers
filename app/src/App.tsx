@@ -2,7 +2,17 @@ import { AppSidebar } from "@/components/Sidebar";
 import { AddFriendForm } from "./components/AddFriendForm";
 import { FriendList } from "./components/FriendList";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 function App() {
   return (
     <>
@@ -14,6 +24,26 @@ function App() {
         <AddFriendForm defaultAge={21} />
         <h2>Friend List</h2>
         <FriendList minAge={18} maxAge={65} />
+
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button>Open</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+              <DrawerDescription>
+                This action cannot be undone.
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter>
+              <Button>Submit</Button>
+              <DrawerClose>
+                <Button>Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </div>
     </>
   );
