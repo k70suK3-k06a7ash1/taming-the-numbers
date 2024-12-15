@@ -5,7 +5,6 @@ import { FriendList } from "./components/FriendList";
 function App() {
 
   return (
-    // <main className="w-screen flex justify-center items-center h-svh">
     <>
     <h1>My simple Dexie app</h1>
 
@@ -15,7 +14,6 @@ function App() {
     <h2>Friend List</h2>
     <FriendList minAge={18} maxAge={65} />
   </>
-    // </main>
   );
 }
 

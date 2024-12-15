@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { db } from "../db/client";
+import { Button } from "./ui/button";
 
 export function AddFriendForm({ defaultAge } = { defaultAge: 21 }) {
   const [name, setName] = useState("");
@@ -37,7 +38,7 @@ export function AddFriendForm({ defaultAge } = { defaultAge: 21 }) {
         value={age}
         onChange={(ev) => setAge(Number(ev.target.value))}
       />
-      <button onClick={addFriend}>Add</button>
+      <Button onClick={addFriend}>Add</Button>
     </>
   );
 }
