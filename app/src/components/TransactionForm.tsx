@@ -21,6 +21,7 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { STORAGE_KEY } from "@/constants/storage-key";
+import { generateFibonacci } from "@/helpers/generate-fibonacci";
 
 const SelectMode = {
   INPUT: "input",
@@ -38,34 +39,6 @@ export const TransactionForm = () => {
     (localStorage.getItem(STORAGE_KEY.AMOUNT_MODE) as SelectModeType) ||
       SelectMode.INPUT
   );
-
-  //   const SelectConfig = {
-  //     min: 100, // 最小金額
-  //     max: 40000, // 最大金額
-  //     step: 300, // 金額刻み
-  //   };
-
-  const generateFibonacci = (max: number): number[] => {
-    let fib = [100, 200]; // 初期値として 1 と 2
-    while (true) {
-      const next = fib[fib.length - 1] + fib[fib.length - 2];
-      if (next > max) break;
-      fib.push(next);
-    }
-    return fib;
-  };
-
-  //   const generateOptions = () => {
-  //     const options = [];
-  //     for (
-  //       let i = SelectConfig.min;
-  //       i <= SelectConfig.max;
-  //       i += SelectConfig.step
-  //     ) {
-  //       options.push(i);
-  //     }
-  //     return options;
-  //   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,7 +89,7 @@ export const TransactionForm = () => {
                     htmlFor="amount"
                   >
                     金額
-                    <div className="py-1 flex justify-end items-center gap-1">
+                    <div className="py-1 flex justify-end items-center gap-2">
                       <span className="text-xs">プルダウンで入力</span>
                       <Switch
                         checked={amountMode === SelectMode.SELECT}
