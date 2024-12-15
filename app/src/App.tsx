@@ -1,4 +1,3 @@
-import { AppSidebar } from "@/components/Sidebar";
 import { AddFriendForm } from "./components/AddFriendForm";
 import { FriendList } from "./components/FriendList";
 import { SidebarTrigger } from "@/components/ui/sidebar";
