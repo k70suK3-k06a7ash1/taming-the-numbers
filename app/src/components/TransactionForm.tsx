@@ -28,13 +28,17 @@ const SelectMode = {
 
 type SelectModeType = (typeof SelectMode)[keyof typeof SelectMode];
 
+const STORAGE_KEY = {
+  AMOUNT_MODE: "amount-mode",
+} as const;
 export const TransactionForm = () => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
 
   const [amountMode, setAmountMode] = useState<SelectModeType>(
-    SelectMode.INPUT
+    (localStorage.getItem(STORAGE_KEY.AMOUNT_MODE) as SelectModeType) ||
+      SelectMode.INPUT
   );
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -47,6 +51,12 @@ export const TransactionForm = () => {
     });
   };
 
+  const handleCheckedAmountMode = () => {
+    const newAmountMode =
+      amountMode === SelectMode.INPUT ? SelectMode.SELECT : SelectMode.INPUT;
+    setAmountMode(newAmountMode);
+    localStorage.setItem(STORAGE_KEY.AMOUNT_MODE, newAmountMode);
+  };
   return (
     <Drawer>
       <DrawerTrigger
@@ -83,13 +93,8 @@ export const TransactionForm = () => {
                     <div className="py-1 flex justify-end items-center gap-1">
                       <span className="text-xs">プルダウンで入力</span>
                       <Switch
-                        onCheckedChange={() => {
-                          setAmountMode(
-                            amountMode === SelectMode.INPUT
-                              ? SelectMode.SELECT
-                              : SelectMode.INPUT
-                          );
-                        }}
+                        checked={amountMode === SelectMode.SELECT}
+                        onCheckedChange={handleCheckedAmountMode}
                       />
                     </div>
                   </Label>
