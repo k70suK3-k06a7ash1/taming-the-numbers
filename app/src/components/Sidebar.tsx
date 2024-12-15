@@ -7,9 +7,9 @@ import {
   //   SidebarGroupContent,
   //   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  // SidebarMenu,
+  // SidebarMenuButton,
+  // SidebarMenuItem,
   //   SidebarMenu,
   //   SidebarMenuButton,
   //   SidebarMenuItem,
@@ -17,16 +17,16 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   AudioWaveform,
-  ChevronDown,
+  // ChevronDown,
   Command,
   GalleryVerticalEnd,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+// import {
+//   DropdownMenu,
+//   DropdownMenuTrigger,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+// } from "@/components/ui/dropdown-menu";
 import { TeamSwitcher } from "@/components/TeamSwitcher";
 
 const data = {
