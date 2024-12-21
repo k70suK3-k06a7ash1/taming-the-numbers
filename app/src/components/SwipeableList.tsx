@@ -111,12 +111,9 @@ export const SwipeableList = () => {
 
   return (
     <div className="w-full mx-auto" onClick={() => handleSetOpenItem(null)}>
-      <ul className="bg-gray-100 rounded-lg overflow-hidden">
+      <ul className=" rounded-lg overflow-hidden">
         {state.items.map((item) => (
-          <li
-            key={item.id}
-            className="border-b border-gray-200 last:border-b-0"
-          >
+          <li key={item.id} className=" last:border-b-0">
             {state.editingId === item.id ? (
               <div className="p-4 flex">
                 <Input
@@ -139,7 +136,6 @@ export const SwipeableList = () => {
                 }
               >
                 <TransactionCard key={item.id} transaction={item} />
-                <Spacer size={8} />
               </SwipeableListItem>
             )}
           </li>

@@ -38,11 +38,11 @@ export const SwipeableListItem = ({
         dragConstraints={{ left: -150, right: 0 }}
         onDragEnd={handleDragEnd}
         animate={{ x: isOpen ? -150 : 0 }}
-        className="bg-white z-10 relative"
+        className="bg-inherit z-10 relative rounded-lg"
       >
         {children}
       </motion.div>
-      <div className="absolute right-0 top-0 bottom-0 w-[150px] flex">
+      <div className="absolute right-0 top-0 bottom-0 w-[150px] flex ">
         <button
           onClick={onEdit}
           className="bg-blue-500 text-white w-1/2 flex items-center justify-center"
@@ -52,7 +52,7 @@ export const SwipeableListItem = ({
         </button>
         <button
           onClick={onDelete}
-          className="bg-red-500 text-white w-1/2 flex items-center justify-center"
+          className="bg-red-500 text-white w-1/2 flex items-center justify-center rounded-r-lg"
           aria-label="Delete item"
         >
           <Trash size={20} />

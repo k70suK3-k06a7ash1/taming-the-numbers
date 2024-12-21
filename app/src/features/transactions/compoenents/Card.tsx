@@ -6,7 +6,7 @@ type TransactionCardProps = {
   transaction: Transaction;
 };
 export const TransactionCard = ({ transaction }: TransactionCardProps) => (
-  <Card className="">
+  <Card className="rounded-lg">
     <CardContent className="flex justify-between items-center p-4">
       <div className="flex items-center space-x-4">
         <div
