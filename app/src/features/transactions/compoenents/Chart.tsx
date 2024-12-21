@@ -109,7 +109,7 @@ export function Chart() {
     }) ?? [];
   return (
     <>
-      <Tabs defaultValue="week" className="w-80 sm:w-full mx-auto  px-4">
+      <Tabs defaultValue="week" className="w-full sm:w-full mx-auto  px-4">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="week">週</TabsTrigger>
           <TabsTrigger value="month" disabled>
