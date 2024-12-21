@@ -56,7 +56,7 @@ function App() {
             <TransactionSummary />
             <Chart />
 
-            <h2 className="text-2xl font-bold mb-2">最近の取引</h2>
+            {/* <h2 className="text-2xl font-bold mb-2">最近の取引</h2> */}
             <SwipeableList />
           </div>
         </ScrollArea>
