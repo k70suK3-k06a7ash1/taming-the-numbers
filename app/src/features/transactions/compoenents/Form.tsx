@@ -7,7 +7,6 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerTitle,
-  //   DrawerClose,
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
@@ -25,16 +24,34 @@ import { STORAGE_KEY } from "@/constants/storage-key";
 import { generateFibonacci } from "@/helpers/generate-fibonacci";
 import { db } from "@/db/client";
 import { useToast } from "@/hooks/use-toast";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const SelectMode = {
   INPUT: "input",
   SELECT: "select",
 } as const;
 
+const TransactionPattern = {
+  EXPENSE: "expense",
+  INCOME: "income",
+} as const;
+
+type TransactionType =
+  (typeof TransactionPattern)[keyof typeof TransactionPattern];
+
+const isTransactionType = (e: any): e is TransactionType =>
+  new Set([
+    ...Object.entries(TransactionPattern).map(([_key, value]) => value),
+  ]).has(e as any);
+
 type SelectModeType = (typeof SelectMode)[keyof typeof SelectMode];
 
 export const TransactionForm = () => {
   const { toast } = useToast();
+  const [transactionType, setTransactionType] = useState<TransactionType>(
+    TransactionPattern.EXPENSE
+  );
+
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -49,7 +66,11 @@ export const TransactionForm = () => {
     const today = new Date();
     await db.transactions.add({
       description,
-      amount: Number.isNaN(parseFloat(amount)) ? 0 : parseFloat(amount),
+      amount: Number.isNaN(parseFloat(amount))
+        ? 0
+        : transactionType === TransactionPattern.EXPENSE
+        ? -Math.abs(parseFloat(amount))
+        : parseFloat(amount),
       category,
       createAt: today,
       updateAt: today,
@@ -78,6 +99,40 @@ export const TransactionForm = () => {
       <DrawerContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <DrawerHeader>
+            <RadioGroup
+              defaultValue={transactionType}
+              onValueChange={(e) =>
+                isTransactionType(e) && setTransactionType(e)
+              }
+              className="grid grid-cols-2 gap-4 mb-6"
+            >
+              <div>
+                <RadioGroupItem
+                  value="expense"
+                  id="expense"
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor="expense"
+                  className="flex justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  支出
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem
+                  value="income"
+                  id="income"
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor="income"
+                  className="flex justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  収入
+                </Label>
+              </div>
+            </RadioGroup>
             <DrawerDescription>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
