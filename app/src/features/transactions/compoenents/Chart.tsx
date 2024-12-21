@@ -33,7 +33,7 @@ const chartConfig = {
 export function Chart() {
   return (
     <>
-      <Tabs defaultValue="account" className="w-80 sm:w-full mx-auto">
+      <Tabs defaultValue="week" className="w-80 sm:w-full mx-auto  px-4">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="week">週</TabsTrigger>
           <TabsTrigger value="month">月</TabsTrigger>

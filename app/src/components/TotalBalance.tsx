@@ -9,7 +9,7 @@ export function TotalBalance({ income, expenses }: TotalBalanceProps) {
   const balance = income - expenses;
 
   return (
-    <div className="grid gap-4 md:grid-cols-3 mb-4">
+    <div className="container mx-auto px-4 grid gap-4 md:grid-cols-3 mb-4">
       <Card className="overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">収入</CardTitle>

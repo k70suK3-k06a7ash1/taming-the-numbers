@@ -48,15 +48,15 @@ function App() {
             </div>
           </section>
         </header>
-        <section className=" container mx-auto px-4">
+        <section className="container mx-auto px-4">
           <DateSelector />
         </section>
-        <ScrollArea className="container mx-auto flex-1 px-4 h-full">
-          <div className="py-2">
-            <TransactionSummary />
-            <Chart />
-            <SwipeableList />
-          </div>
+        <ScrollArea className="container mx-auto  h-full">
+          {/* <div className="py-2"> */}
+          <TransactionSummary />
+          <Chart />
+          <SwipeableList />
+          {/* </div> */}
         </ScrollArea>
         <TransactionForm />
       </main>
