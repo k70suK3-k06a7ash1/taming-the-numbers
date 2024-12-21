@@ -105,7 +105,7 @@ export const TransactionForm = () => {
               onValueChange={(e) =>
                 isTransactionType(e) && setTransactionType(e)
               }
-              className="grid grid-cols-2 gap-4 mb-6"
+              className="grid grid-cols-2 gap-4 mb-2"
             >
               <div>
                 <RadioGroupItem
@@ -135,7 +135,7 @@ export const TransactionForm = () => {
               </div>
             </RadioGroup>
             <DrawerDescription>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <section className="space-y-4">
                 <div>
                   <Label className="flex justify-start" htmlFor="description">
                     説明
@@ -209,7 +209,7 @@ export const TransactionForm = () => {
                     </SelectContent>
                   </Select>
                 </div>
-              </form>
+              </section>
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter className="pt-0">
