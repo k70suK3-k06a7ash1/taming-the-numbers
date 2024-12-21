@@ -9,16 +9,25 @@ import {
 import { ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { db, Transaction } from "@/db/client";
+import { useLiveQuery } from "dexie-react-hooks";
 
-const chartData = [
-  { month: "January", income: 186, expense: 80 },
-  { month: "February", income: 305, expense: 200 },
-  { month: "March", income: 237, expense: 120 },
-  { month: "April", income: 73, expense: 190 },
-  { month: "May", income: 209, expense: 130 },
-  { month: "June", income: 214, expense: 140 },
-];
+const DayOfWeek = {
+  Sunday: { full: "Sunday", short: "Sun.", abbr: "Su." },
+  Monday: { full: "Monday", short: "Mon.", abbr: "Mo." },
+  Tuesday: { full: "Tuesday", short: "Tue.", abbr: "Tu." },
+  Wednesday: { full: "Wednesday", short: "Wed.", abbr: "We." },
+  Thursday: { full: "Thursday", short: "Thu.", abbr: "Th." },
+  Friday: { full: "Friday", short: "Fri.", abbr: "Fr." },
+  Saturday: { full: "Saturday", short: "Sat.", abbr: "Sa." },
+} as const;
 
+type DayOfWeekType = (typeof DayOfWeek)[keyof typeof DayOfWeek]["full"];
+type ChartItem = {
+  dayOfWeek: DayOfWeekType;
+  income: number;
+  expense: number;
+};
 const chartConfig = {
   income: {
     label: "収入",
@@ -30,7 +39,62 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+const groupTransactionsByDay = (transactions: Transaction[]): ChartItem[] => {
+  const daysOfWeek: DayOfWeekType[] = [
+    ...Object.entries(DayOfWeek).map(([_key, value]) => value.full),
+  ];
+
+  return daysOfWeek.map((day) => {
+    const filteredTransactions = transactions.filter((transaction) => {
+      return day === daysOfWeek[new Date(transaction.createAt).getDay()];
+    });
+
+    const { income, expense } = filteredTransactions.reduce(
+      (totals, transaction) => {
+        if (transaction.amount > 0) {
+          totals.income += transaction.amount;
+        } else {
+          totals.expense += transaction.amount;
+        }
+        return totals;
+      },
+      { income: 0, expense: 0 }
+    );
+
+    return { dayOfWeek: day, income, expense: Math.abs(expense) };
+  });
+};
+
 export function Chart() {
+  const now = new Date();
+
+  const getStartOfWeek = () => {
+    const firstDayOfWeek = new Date(now.setDate(now.getDate() - now.getDay())); // Sunday is considered the start of the week
+    firstDayOfWeek.setHours(0, 0, 0, 0);
+    return firstDayOfWeek;
+  };
+
+  const getEndOfWeek = () => {
+    const lastDayOfWeek = new Date(
+      now.setDate(now.getDate() + (6 - now.getDay()))
+    );
+    lastDayOfWeek.setHours(23, 59, 59, 999);
+    return lastDayOfWeek;
+  };
+
+  const startOfWeek = getStartOfWeek();
+  const endOfWeek = getEndOfWeek();
+  const chartData =
+    useLiveQuery(async () => {
+      const transactions = await db.transactions
+        .where("createAt")
+        .between(startOfWeek, endOfWeek, true, true)
+        .toArray();
+      console.log({ transactions });
+
+      const chartList: ChartItem[] = groupTransactionsByDay(transactions);
+      return chartList;
+    }) ?? [];
   return (
     <>
       <Tabs defaultValue="week" className="w-80 sm:w-full mx-auto  px-4">

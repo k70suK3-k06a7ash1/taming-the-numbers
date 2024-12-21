@@ -38,7 +38,7 @@ export const TransactionCard = ({ transaction }: TransactionCardProps) => (
         }`}
       >
         {transaction.amount >= 0 ? "+" : ""}
-        {transaction.amount.toFixed(2)}円
+        {transaction.amount.toFixed(0)}円
       </p>
     </CardContent>
   </Card>

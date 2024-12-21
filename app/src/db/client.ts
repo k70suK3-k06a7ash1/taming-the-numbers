@@ -28,7 +28,8 @@ const db = new Dexie("Database") as Dexie & {
 
 // Schema declaration:
 db.version(1).stores({
-  transactions: "++id, description, category, amount, bookkeepingId",
+  transactions:
+    "++id, description, category, amount,createAt, updateAt, bookkeepingId",
   categories: "++id, title",
 });
 
