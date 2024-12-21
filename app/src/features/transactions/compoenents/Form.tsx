@@ -74,7 +74,7 @@ export const TransactionForm = () => {
     <Drawer>
       <DrawerTrigger
         asChild
-        className="fixed bottom-3 right-3 rounded-full w-14 h-14"
+        className="fixed bottom-3 right-3 rounded-full w-14 h-14 z-20"
       >
         <Button>
           <Plus className="w-6 h-6" />

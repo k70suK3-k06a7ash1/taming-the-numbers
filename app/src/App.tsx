@@ -1,28 +1,20 @@
-// import { AddFriendForm } from "./components/AddFriendForm";
-// import { FriendList } from "./components/FriendList";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-// import {
-//   Drawer,
-//   DrawerClose,
-//   DrawerContent,
-//   DrawerDescription,
-//   DrawerFooter,
-//   DrawerHeader,
-//   DrawerTrigger,
-// } from "@/components/ui/drawer";
+
 import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { useState } from "react";
-// import { Label } from "@radix-ui/react-label";
-import TransactionList from "@/components/TransactionList";
+
+import TransactionList from "@/features/transactions/compoenents/List";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/providers/Theme";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
-import { TransactionForm } from "@/components/TransactionForm";
+import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
+import { db } from "@/db/client";
+import { useLiveQuery } from "dexie-react-hooks";
 function App() {
   const { theme, setTheme } = useTheme();
+  const transactions =
+    useLiveQuery(async () => await db.transactions.toArray(), []) ?? [];
 
   return (
     <div className="flex w-screen h-screen bg-background text-foreground">
@@ -61,10 +53,12 @@ function App() {
         <ScrollArea className="container mx-auto flex-1 px-4 h-full">
           <div className="py-4">
             <TransactionList />
+            <h2 className="text-2xl font-bold mb-4">最近の取引</h2>
+
+            <SwipeableList transactions={transactions} />
           </div>
         </ScrollArea>
         <TransactionForm />
-        <SwipeableList />
       </main>
       <AppSidebar />
     </div>

@@ -12,13 +12,13 @@ interface SwipeableListItemProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export const SwipeableListItem: React.FC<SwipeableListItemProps> = ({
+export const SwipeableListItem = ({
   children,
   onDelete,
   onEdit,
   isOpen,
   setIsOpen,
-}) => {
+}: SwipeableListItemProps) => {
   const handleDragEnd = (
     _event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo

@@ -1,32 +1,11 @@
-// import { Calendar, Home, Search, Settings } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
-  //   SidebarGroup,
-  //   SidebarGroupContent,
-  //   SidebarGroupLabel,
   SidebarHeader,
-  // SidebarMenu,
-  // SidebarMenuButton,
-  // SidebarMenuItem,
-  //   SidebarMenu,
-  //   SidebarMenuButton,
-  //   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import {
-  AudioWaveform,
-  // ChevronDown,
-  Command,
-  GalleryVerticalEnd,
-} from "lucide-react";
-// import {
-//   DropdownMenu,
-//   DropdownMenuTrigger,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-// } from "@/components/ui/dropdown-menu";
+import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
+
 import { TeamSwitcher } from "@/components/TeamSwitcher";
 
 const data = {

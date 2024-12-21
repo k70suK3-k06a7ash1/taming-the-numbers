@@ -1,22 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { SwipeableListItem } from "./SwipeableListItem";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Transaction } from "@/db/client";
+import { TransactionCard } from "@/features/transactions/compoenents/Card";
 
-interface Item {
-  id: number;
-  text: string;
-}
-
-export const SwipeableList: React.FC = () => {
-  const [items, setItems] = useState<Item[]>([
-    { id: 1, text: "Buy groceries" },
-    { id: 2, text: "Clean the house" },
-    { id: 3, text: "Walk the dog" },
-    { id: 4, text: "Do laundry" },
-  ]);
+type Props = {
+  transactions: Transaction[];
+};
+export const SwipeableList = ({ transactions }: Props) => {
+  const [items, setItems] = useState<Transaction[]>(transactions);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
   const [openItemId, setOpenItemId] = useState<number | null>(null);
@@ -29,7 +24,7 @@ export const SwipeableList: React.FC = () => {
     const itemToEdit = items.find((item) => item.id === id);
     if (itemToEdit) {
       setEditingId(id);
-      setEditText(itemToEdit.text);
+      setEditText(itemToEdit.description);
     }
   };
 
@@ -52,8 +47,7 @@ export const SwipeableList: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8" onClick={handleOutsideClick}>
-      <h1 className="text-2xl font-bold mb-4">Reminders</h1>
+    <div className="w-full mx-auto" onClick={handleOutsideClick}>
       <ul className="bg-gray-100 rounded-lg overflow-hidden">
         {items.map((item) => (
           <li
@@ -76,9 +70,7 @@ export const SwipeableList: React.FC = () => {
                 isOpen={openItemId === item.id}
                 setIsOpen={(isOpen) => setOpenItemId(isOpen ? item.id : null)}
               >
-                <div className="p-4" onClick={(e) => e.stopPropagation()}>
-                  <span>{item.text}</span>
-                </div>
+                <TransactionCard key={item.id} transaction={item} />
               </SwipeableListItem>
             )}
           </li>
