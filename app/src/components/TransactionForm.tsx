@@ -23,6 +23,7 @@ import { Switch } from "@/components/ui/switch";
 import { STORAGE_KEY } from "@/constants/storage-key";
 import { generateFibonacci } from "@/helpers/generate-fibonacci";
 import { db } from "@/db/client";
+import { useToast } from "@/hooks/use-toast";
 
 const SelectMode = {
   INPUT: "input",
@@ -32,6 +33,7 @@ const SelectMode = {
 type SelectModeType = (typeof SelectMode)[keyof typeof SelectMode];
 
 export const TransactionForm = () => {
+  const { toast } = useToast();
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -51,6 +53,8 @@ export const TransactionForm = () => {
       createAt: today,
       updateAt: today,
     });
+
+    toast({ title: "登録しました" });
 
     // Here you would typically save the new transaction
     console.log("New transaction:", {
@@ -132,8 +136,6 @@ export const TransactionForm = () => {
                             {amount.toLocaleString()}円
                           </SelectItem>
                         ))}
-                        {/* <SelectItem value="100">100</SelectItem>
-                        <SelectItem value="200">200</SelectItem> */}
                       </SelectContent>
                     </Select>
                   )}

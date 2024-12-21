@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { SidebarProvider } from "@/components/ui/sidebar.tsx";
 import { ThemeProvider } from "@/providers/Theme.tsx";
 import { STORAGE_KEY } from "@/constants/storage-key.ts";
+import { Toaster } from "@/components/ui/toaster.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,5 +14,6 @@ createRoot(document.getElementById("root")!).render(
         <App />
       </SidebarProvider>
     </ThemeProvider>
+    <Toaster />
   </StrictMode>
 );
