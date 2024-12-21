@@ -10,6 +10,7 @@ import { AppSidebar } from "@/components/Sidebar";
 import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
 import { DateSelector } from "@/components/DateSelector";
+import { Chart } from "@/features/transactions/compoenents/Chart";
 function App() {
   const { theme, setTheme } = useTheme();
 
@@ -50,10 +51,11 @@ function App() {
         <section className=" container mx-auto px-4">
           <DateSelector />
         </section>
-
         <ScrollArea className="container mx-auto flex-1 px-4 h-full">
           <div className="py-2">
             <TransactionSummary />
+            <Chart />
+
             <h2 className="text-2xl font-bold mb-2">最近の取引</h2>
             <SwipeableList />
           </div>
