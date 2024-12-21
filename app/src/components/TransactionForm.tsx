@@ -43,10 +43,13 @@ export const TransactionForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const today = new Date();
     await db.transactions.add({
       description,
       amount: parseFloat(amount),
       category,
+      createAt: today,
+      updateAt: today,
     });
 
     // Here you would typically save the new transaction

@@ -12,6 +12,8 @@ interface Transaction {
   description: string;
   category: string;
   amount: number;
+  createAt: Date;
+  updateAt: Date;
 }
 
 const db = new Dexie("FriendsDatabase") as Dexie & {
