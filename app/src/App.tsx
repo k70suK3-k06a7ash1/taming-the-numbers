@@ -47,7 +47,7 @@ function App() {
             </div>
           </section>
         </header>
-        <section className="px-4">
+        <section className=" container mx-auto px-4">
           <DateSelector />
         </section>
 

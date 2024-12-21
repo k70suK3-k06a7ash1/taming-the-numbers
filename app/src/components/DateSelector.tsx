@@ -25,8 +25,8 @@ export function DateSelector() {
   };
 
   return (
-    <Card className="mb-6">
-      <CardContent className="flex items-center justify-between p-4">
+    <Card className="mb-6  ">
+      <CardContent className=" flex items-center justify-between p-4">
         <Button
           variant="ghost"
           size="icon"
