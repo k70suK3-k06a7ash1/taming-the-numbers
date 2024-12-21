@@ -6,6 +6,7 @@ import {
   DrawerHeader,
   DrawerDescription,
   DrawerFooter,
+  DrawerTitle,
   //   DrawerClose,
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
@@ -55,13 +56,6 @@ export const TransactionForm = () => {
     });
 
     toast({ title: "登録しました" });
-
-    // Here you would typically save the new transaction
-    console.log("New transaction:", {
-      description,
-      amount: parseFloat(amount),
-      category,
-    });
   };
 
   const handleCheckedAmountMode = () => {
@@ -80,6 +74,7 @@ export const TransactionForm = () => {
           <Plus className="w-6 h-6" />
         </Button>
       </DrawerTrigger>
+      <DrawerTitle></DrawerTitle>
       <DrawerContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <DrawerHeader>

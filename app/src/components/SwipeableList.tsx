@@ -74,7 +74,6 @@ const reducer = (state: State, action: Action): State => {
 export const SwipeableList = () => {
   const transactions =
     useLiveQuery(async () => await db.transactions.toArray(), []) ?? [];
-  console.log(transactions);
 
   useEffect(() => {
     transactions.length > 0 &&
@@ -147,77 +146,3 @@ export const SwipeableList = () => {
     </div>
   );
 };
-
-// type Props = {
-//   transactions: Transaction[];
-// };
-// export const SwipeableList = ({ transactions }: Props) => {
-//   const [items, setItems] = useState<Transaction[]>(transactions); // WIP
-//   const [editingId, setEditingId] = useState<number | null>(null);
-//   const [editText, setEditText] = useState("");
-//   const [openItemId, setOpenItemId] = useState<number | null>(null);
-
-//   const handleDelete = (id: number) => {
-//     setItems(items.filter((item) => item.id !== id)); // WIP
-//   };
-
-//   const handleEdit = (id: number) => {
-//     const itemToEdit = items.find((item) => item.id === id);
-//     if (itemToEdit) {
-//       setEditingId(id);
-//       setEditText(itemToEdit.description);
-//     }
-//   };
-
-//   const handleSaveEdit = () => {
-//     if (editingId !== null) {
-//       setItems(
-//         items.map((item) =>
-//           item.id === editingId ? { ...item, text: editText } : item
-//         )
-//       );
-//       setEditingId(null);
-//       setEditText("");
-//     }
-//   };
-
-//   const handleOutsideClick = () => {
-//     if (openItemId !== null) {
-//       setOpenItemId(null);
-//     }
-//   };
-
-//   console.log({ items });
-//   return (
-//     <div className="w-full mx-auto" onClick={handleOutsideClick}>
-//       <ul className="bg-gray-100 rounded-lg overflow-hidden">
-//         {transactions.map((item) => (
-//           <li
-//             key={item.id}
-//             className="border-b border-gray-200 last:border-b-0"
-//           >
-//             {editingId === item.id ? (
-//               <div className="p-4 flex">
-//                 <Input
-//                   value={editText}
-//                   onChange={(e) => setEditText(e.target.value)}
-//                   className="flex-grow mr-2"
-//                 />
-//                 <Button onClick={handleSaveEdit}>Save</Button>
-//               </div>
-//             ) : (
-//               <SwipeableListItem
-//                 onDelete={() => handleDelete(item.id)}
-//                 onEdit={() => handleEdit(item.id)}
-//                 isOpen={openItemId === item.id}
-//                 setIsOpen={(isOpen) => setOpenItemId(isOpen ? item.id : null)}
-//               >
-//                 <TransactionCard key={item.id} transaction={item} />
-//               </SwipeableListItem>
-//             )}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
