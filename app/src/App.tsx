@@ -19,7 +19,7 @@ function App() {
         <header className=" py-4 px-4">
           <section className="container flex justify-between items-center mx-auto px-4 sm:px-8">
             <h1 className="text-xl font-bold whitespace-nowrap font-serif">
-              Taming The Number
+              Srv.Vinci
             </h1>
             <div className="flex items-center space-x-2">
               <Button
