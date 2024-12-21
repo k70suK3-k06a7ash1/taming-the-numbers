@@ -20,6 +20,7 @@ import { useTheme } from "@/providers/Theme";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
 import { TransactionForm } from "@/components/TransactionForm";
+import { SwipeableList } from "@/components/SwipeableList";
 function App() {
   const { theme, setTheme } = useTheme();
 
@@ -63,6 +64,7 @@ function App() {
           </div>
         </ScrollArea>
         <TransactionForm />
+        <SwipeableList />
       </main>
       <AppSidebar />
     </div>
