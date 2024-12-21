@@ -10,6 +10,7 @@ import { AppSidebar } from "@/components/Sidebar";
 import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
 import { Suspense } from "react";
+import { DateSelector } from "@/components/DateSelector";
 function App() {
   const { theme, setTheme } = useTheme();
 
@@ -47,13 +48,15 @@ function App() {
             </div>
           </section>
         </header>
+        <section className="px-4">
+          <DateSelector />
+        </section>
+
         <ScrollArea className="container mx-auto flex-1 px-4 h-full">
-          <div className="py-4">
+          <div className="py-2">
             <TransactionList />
             <h2 className="text-2xl font-bold mb-4">最近の取引</h2>
-            <Suspense>
-              <SwipeableList />
-            </Suspense>
+            <SwipeableList />
           </div>
         </ScrollArea>
         <TransactionForm />

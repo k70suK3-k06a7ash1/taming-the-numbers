@@ -6,6 +6,7 @@ import { TransactionCard } from "@/features/transactions/compoenents/Card";
 
 import { useReducer, useCallback, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
+import { Spacer } from "@/components/Spacer";
 
 interface State {
   items: Transaction[];
@@ -138,6 +139,7 @@ export const SwipeableList = () => {
                 }
               >
                 <TransactionCard key={item.id} transaction={item} />
+                <Spacer size={8} />
               </SwipeableListItem>
             )}
           </li>
