@@ -22,13 +22,17 @@ const DayOfWeek = {
   Saturday: { full: "Saturday", short: "Sat.", abbr: "Sa." },
 } as const;
 
-function getAbbrByFull(full: string): string | undefined {
-  return Object.values(DayOfWeek).find((day) => day.full === full)?.abbr;
+function getAbbrByFull(full: string): AbbrDayOfWeekType {
+  return (
+    Object.values(DayOfWeek).find((day) => day.full === full)?.abbr ?? "Mo."
+  );
 }
 
 type DayOfWeekType = (typeof DayOfWeek)[keyof typeof DayOfWeek]["full"];
+type AbbrDayOfWeekType = (typeof DayOfWeek)[keyof typeof DayOfWeek]["abbr"];
+
 type ChartItem = {
-  dayOfWeek: DayOfWeekType;
+  dayOfWeek: AbbrDayOfWeekType;
   income: number;
   expense: number;
 };
