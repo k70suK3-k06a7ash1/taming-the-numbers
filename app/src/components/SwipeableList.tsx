@@ -6,7 +6,6 @@ import { TransactionCard } from "@/features/transactions/compoenents/Card";
 
 import { useReducer, useCallback, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { Spacer } from "@/components/Spacer";
 
 interface State {
   items: Transaction[];
@@ -110,8 +109,8 @@ export const SwipeableList = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto" onClick={() => handleSetOpenItem(null)}>
-      <ul className=" rounded-lg overflow-hidden">
+    <div className="w-full mx-auto " onClick={() => handleSetOpenItem(null)}>
+      <ul className="grid gap-2 rounded-lg overflow-hidden">
         {state.items.map((item) => (
           <li key={item.id} className=" last:border-b-0">
             {state.editingId === item.id ? (
