@@ -55,8 +55,6 @@ function App() {
           <div className="py-2">
             <TransactionSummary />
             <Chart />
-
-            {/* <h2 className="text-2xl font-bold mb-2">最近の取引</h2> */}
             <SwipeableList />
           </div>
         </ScrollArea>

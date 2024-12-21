@@ -109,7 +109,10 @@ export const SwipeableList = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto " onClick={() => handleSetOpenItem(null)}>
+    <div
+      className="w-80 sm:w-full mx-auto"
+      onClick={() => handleSetOpenItem(null)}
+    >
       <ul className="grid gap-2 rounded-lg overflow-hidden">
         {state.items.map((item) => (
           <li key={item.id} className=" last:border-b-0">
