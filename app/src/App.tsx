@@ -11,10 +11,9 @@ import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
 import { db } from "@/db/client";
 import { useLiveQuery } from "dexie-react-hooks";
+import { Suspense } from "react";
 function App() {
   const { theme, setTheme } = useTheme();
-  const transactions =
-    useLiveQuery(async () => await db.transactions.toArray(), []) ?? [];
 
   return (
     <div className="flex w-screen h-screen bg-background text-foreground">
@@ -54,8 +53,9 @@ function App() {
           <div className="py-4">
             <TransactionList />
             <h2 className="text-2xl font-bold mb-4">最近の取引</h2>
-
-            <SwipeableList transactions={transactions} />
+            <Suspense>
+              <SwipeableList />
+            </Suspense>
           </div>
         </ScrollArea>
         <TransactionForm />
