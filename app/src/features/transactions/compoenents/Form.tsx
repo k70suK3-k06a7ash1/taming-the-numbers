@@ -74,6 +74,7 @@ export const TransactionForm = () => {
       category,
       createAt: today,
       updateAt: today,
+      bookkeepingId: 1,
     });
 
     toast({ title: "登録しました" });
