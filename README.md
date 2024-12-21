@@ -1,4 +1,4 @@
-# taming-the-numbers
+# srv-vinci
 
 ## Setup
 
@@ -6,7 +6,7 @@
 make set-pre-push
 ```
 
-[Site](https://k70suk3-k06a7ash1.github.io/taming-the-numbers/)
+[Site](https://k70suk3-k06a7ash1.github.io/srv-vinci/)
 
 ```
 「Taming the Numbers」には、数字やデータを「手なずける」「制御する」「扱いやすくする」というニュアンスがあります。このフレーズは、特に以下のような場面で使われることが多いです：
