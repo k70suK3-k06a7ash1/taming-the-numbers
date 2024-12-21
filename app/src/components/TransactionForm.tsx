@@ -48,7 +48,7 @@ export const TransactionForm = () => {
     const today = new Date();
     await db.transactions.add({
       description,
-      amount: parseFloat(amount),
+      amount: Number.isNaN(parseFloat(amount)) ? 0 : parseFloat(amount),
       category,
       createAt: today,
       updateAt: today,

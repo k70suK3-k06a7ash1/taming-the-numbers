@@ -1,6 +1,10 @@
 // db.ts
 import Dexie, { type EntityTable } from "dexie";
 
+interface Category {
+  id: number;
+  title: string;
+}
 interface Transaction {
   id: number;
   description: string;
@@ -10,15 +14,15 @@ interface Transaction {
   updateAt: Date;
 }
 
-const db = new Dexie("FriendsDatabase") as Dexie & {
+const db = new Dexie("Database") as Dexie & {
   transactions: EntityTable<Transaction, "id">;
 };
 
 // Schema declaration:
 db.version(1).stores({
-  friends: "++id, name, age", // primary key "id" (for the runtime!)
   transactions: "++id, description, category, amount",
+  categories: "++id, title",
 });
 
-export type { Transaction };
+export type { Transaction, Category };
 export { db };
