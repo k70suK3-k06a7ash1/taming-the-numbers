@@ -1,12 +1,6 @@
 // db.ts
 import Dexie, { type EntityTable } from "dexie";
 
-interface Friend {
-  id: number;
-  name: string;
-  age: number;
-}
-
 interface Transaction {
   id: number;
   description: string;
@@ -17,10 +11,6 @@ interface Transaction {
 }
 
 const db = new Dexie("FriendsDatabase") as Dexie & {
-  friends: EntityTable<
-    Friend,
-    "id" // primary key "id" (for the typings only)
-  >;
   transactions: EntityTable<Transaction, "id">;
 };
 
@@ -30,5 +20,5 @@ db.version(1).stores({
   transactions: "++id, description, category, amount",
 });
 
-export type { Friend, Transaction };
+export type { Transaction };
 export { db };
