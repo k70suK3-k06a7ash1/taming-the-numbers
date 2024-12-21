@@ -22,6 +22,7 @@ import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { STORAGE_KEY } from "@/constants/storage-key";
 import { generateFibonacci } from "@/helpers/generate-fibonacci";
+import { db } from "@/db/client";
 
 const SelectMode = {
   INPUT: "input",
@@ -40,8 +41,14 @@ export const TransactionForm = () => {
       SelectMode.INPUT
   );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    await db.transactions.add({
+      description,
+      amount: parseFloat(amount),
+      category,
+    });
+
     // Here you would typically save the new transaction
     console.log("New transaction:", {
       description,

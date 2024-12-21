@@ -1,35 +1,29 @@
 import { TotalBalance } from "@/components/TotalBalance";
 import { Card, CardContent } from "@/components/ui/card";
+import { db } from "@/db/client";
+import { useLiveQuery } from "dexie-react-hooks";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-// ダミーデータを生成する関数
-function generateDummyTransactions(count: number) {
-  const categories = [
-    "Food",
-    "Income",
-    "Utilities",
-    "Transportation",
-    "Entertainment",
-    "Other",
-  ];
-  const transactions = [];
 
-  for (let i = 1; i <= count; i++) {
-    const amount = Math.random() * 10000 - 5000; // -500 to 500
-    transactions.push({
-      id: i,
-      date: new Date(2023, 0, i).toISOString().split("T")[0], // 2023-01-01 to 2023-12-31
-      description: `Transaction ${i}`,
-      amount: parseFloat(amount.toFixed(2)),
-      category: categories[Math.floor(Math.random() * categories.length)],
-    });
-  }
-
-  return transactions;
-}
-
-const transactions = generateDummyTransactions(50); // 50個のダミートランザクションを生成
+// const transactions = generateDummyTransactions(); // 50個のダミートランザクションを生成
 
 export default function TransactionList() {
+  const transactions =
+    useLiveQuery(
+      async () => {
+        //
+        // Query Dexie's API
+        //
+        const transactions = await db.transactions
+          // .where("age")
+          // .between(minAge, maxAge)
+          .toArray();
+
+        // Return result
+        return transactions;
+      },
+      // specify vars that affect query:
+      []
+    ) ?? [];
   const totalIncome = transactions.reduce(
     (sum, transaction) =>
       transaction.amount > 0 ? sum + transaction.amount : sum,
@@ -69,7 +63,7 @@ export default function TransactionList() {
                   {transaction.category}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {transaction.date}
+                  {transaction.description}
                 </p>
               </div>
             </div>
