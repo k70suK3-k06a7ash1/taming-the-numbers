@@ -2,14 +2,13 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import { Button } from "@/components/ui/button";
 
-import TransactionList from "@/features/transactions/compoenents/List";
+import { TransactionSummary } from "@/features/transactions/compoenents/Summary";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/providers/Theme";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
 import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
-import { Suspense } from "react";
 import { DateSelector } from "@/components/DateSelector";
 function App() {
   const { theme, setTheme } = useTheme();
@@ -54,7 +53,7 @@ function App() {
 
         <ScrollArea className="container mx-auto flex-1 px-4 h-full">
           <div className="py-2">
-            <TransactionList />
+            <TransactionSummary />
             <h2 className="text-2xl font-bold mb-2">最近の取引</h2>
             <SwipeableList />
           </div>

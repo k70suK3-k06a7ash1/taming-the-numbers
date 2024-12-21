@@ -2,7 +2,7 @@ import { TotalBalance } from "@/components/TotalBalance";
 import { db } from "@/db/client";
 import { useLiveQuery } from "dexie-react-hooks";
 
-export default function TransactionList() {
+export function TransactionSummary() {
   const transactions =
     useLiveQuery(
       async () => await db.transactions.toArray(),
