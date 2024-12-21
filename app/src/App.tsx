@@ -15,7 +15,7 @@ function App() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex w-screen h-screen bg-background text-foreground">
+    <div className="flex w-screen h-svh bg-background text-foreground">
       <main className="flex-1 flex flex-col overflow-scroll">
         <header className=" py-4 px-4">
           <section className="container flex justify-between items-center mx-auto px-4 sm:px-8">
