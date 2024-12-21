@@ -22,6 +22,10 @@ const DayOfWeek = {
   Saturday: { full: "Saturday", short: "Sat.", abbr: "Sa." },
 } as const;
 
+function getAbbrByFull(full: string): string | undefined {
+  return Object.values(DayOfWeek).find((day) => day.full === full)?.abbr;
+}
+
 type DayOfWeekType = (typeof DayOfWeek)[keyof typeof DayOfWeek]["full"];
 type ChartItem = {
   dayOfWeek: DayOfWeekType;
@@ -61,7 +65,11 @@ const groupTransactionsByDay = (transactions: Transaction[]): ChartItem[] => {
       { income: 0, expense: 0 }
     );
 
-    return { dayOfWeek: day, income, expense: Math.abs(expense) };
+    return {
+      dayOfWeek: getAbbrByFull(day),
+      income,
+      expense: Math.abs(expense),
+    };
   });
 };
 
@@ -100,8 +108,12 @@ export function Chart() {
       <Tabs defaultValue="week" className="w-80 sm:w-full mx-auto  px-4">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="week">週</TabsTrigger>
-          <TabsTrigger value="month">月</TabsTrigger>
-          <TabsTrigger value="year">年</TabsTrigger>
+          <TabsTrigger value="month" disabled>
+            月
+          </TabsTrigger>
+          <TabsTrigger value="year" disabled>
+            年
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="account"></TabsContent>
         <TabsContent value="password"></TabsContent>
@@ -113,7 +125,7 @@ export function Chart() {
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
           <XAxis
-            dataKey="month"
+            dataKey="dayOfWeek"
             tickLine={false}
             tickMargin={10}
             axisLine={false}
