@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { SwipeableListItem } from "./SwipeableListItem";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SwipeableListItem } from "@/components/SwipeableListItem";
 
 interface Item {
   id: number;
@@ -19,6 +19,7 @@ export const SwipeableList: React.FC = () => {
   ]);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
+  const [openItemId, setOpenItemId] = useState<number | null>(null);
 
   const handleDelete = (id: number) => {
     setItems(items.filter((item) => item.id !== id));
@@ -44,8 +45,14 @@ export const SwipeableList: React.FC = () => {
     }
   };
 
+  const handleOutsideClick = () => {
+    if (openItemId !== null) {
+      setOpenItemId(null);
+    }
+  };
+
   return (
-    <div className="max-w-md mx-auto mt-8">
+    <div className="max-w-md mx-auto mt-8" onClick={handleOutsideClick}>
       <h1 className="text-2xl font-bold mb-4">Reminders</h1>
       <ul className="bg-gray-100 rounded-lg overflow-hidden">
         {items.map((item) => (
@@ -66,8 +73,10 @@ export const SwipeableList: React.FC = () => {
               <SwipeableListItem
                 onDelete={() => handleDelete(item.id)}
                 onEdit={() => handleEdit(item.id)}
+                isOpen={openItemId === item.id}
+                setIsOpen={(isOpen) => setOpenItemId(isOpen ? item.id : null)}
               >
-                <div className="p-4">
+                <div className="p-4" onClick={(e) => e.stopPropagation()}>
                   <span>{item.text}</span>
                 </div>
               </SwipeableListItem>

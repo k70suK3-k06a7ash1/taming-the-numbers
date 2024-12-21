@@ -1,34 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, PanInfo, useAnimation } from "framer-motion";
+import React from "react";
+import { motion, PanInfo } from "framer-motion";
 import { Edit, Trash } from "lucide-react";
 
 interface SwipeableListItemProps {
   children: React.ReactNode;
   onDelete: () => void;
   onEdit: () => void;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 export const SwipeableListItem: React.FC<SwipeableListItemProps> = ({
   children,
   onDelete,
   onEdit,
+  isOpen,
+  setIsOpen,
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const controls = useAnimation();
-
   const handleDragEnd = (
-    event: MouseEvent | TouchEvent | PointerEvent,
+    _event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    const threshold = 50; // スワイプのしきい値（ピクセル単位）
-    setIsDragging(false);
-
+    const threshold = 50;
     if (info.offset.x < -threshold) {
-      controls.start({ x: -150 }); // メニューを表示
+      setIsOpen(true);
     } else {
-      controls.start({ x: 0 }); // 元の位置に戻す
+      setIsOpen(false);
     }
   };
 
@@ -37,9 +36,8 @@ export const SwipeableListItem: React.FC<SwipeableListItemProps> = ({
       <motion.div
         drag="x"
         dragConstraints={{ left: -150, right: 0 }}
-        onDragStart={() => setIsDragging(true)}
         onDragEnd={handleDragEnd}
-        animate={controls}
+        animate={{ x: isOpen ? -150 : 0 }}
         className="bg-white z-10 relative"
       >
         {children}
