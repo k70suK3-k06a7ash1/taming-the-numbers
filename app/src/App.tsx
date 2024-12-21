@@ -9,8 +9,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { AppSidebar } from "@/components/Sidebar";
 import { TransactionForm } from "@/features/transactions/compoenents/Form";
 import { SwipeableList } from "@/components/SwipeableList";
-import { db } from "@/db/client";
-import { useLiveQuery } from "dexie-react-hooks";
 import { Suspense } from "react";
 function App() {
   const { theme, setTheme } = useTheme();
