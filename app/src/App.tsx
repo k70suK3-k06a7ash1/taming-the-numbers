@@ -55,7 +55,7 @@ function App() {
         <ScrollArea className="container mx-auto flex-1 px-4 h-full">
           <div className="py-2">
             <TransactionList />
-            <h2 className="text-2xl font-bold mb-4">最近の取引</h2>
+            <h2 className="text-2xl font-bold mb-2">最近の取引</h2>
             <SwipeableList />
           </div>
         </ScrollArea>
